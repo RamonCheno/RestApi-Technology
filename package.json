@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "tsc": "tsc --watch",
-    "start:dev:local": "nodemon ./dist/app.js"
+    "start:dev:local": "nodemon ./dist/app.js",
+    "start:prod":"node ./dist/app.js"
   },
   "keywords": [
     "rest-api"
