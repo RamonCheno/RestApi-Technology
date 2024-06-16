@@ -1,5 +1,5 @@
 
-# Master Rest api con express y MongoDB
+# RestApi Technology con express y MongoDB
 - El proyecto detalla una API para llevar un control de productos y usuarios mediante registros en la base de datos
 
 ## Pre requisitos
