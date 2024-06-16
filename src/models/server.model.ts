@@ -35,21 +35,19 @@ class Server {
     );
   }
 
-  async connectDB(){
+  async connectDB() {
     await db_connection();
   }
 
-  routes(){
+  routes() {
     this.app.use(this.login_path, loginRoutes);
     this.app.use(this.user_path, userRoutes);
     this.app.use(this.product_path, productRoutes);
   }
 
-  middleware(){
-    const allowedOrigins = process.env.ALLOWED_CORD || ' ';    
-    this.app.use(cors({
-      origin: allowedOrigins
-    }));
+  middleware() {
+    const allowedOrigins = process.env.ALLOWED_CORD || ' ';
+    this.app.use(cors());
     this.app.use(express.json());
   }
 
