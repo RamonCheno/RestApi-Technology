@@ -6,9 +6,9 @@ import {
 } from "../controllers/product.controller";
 import { validateFieldRequest } from "../middlewares/validateFields";
 import { check } from "express-validator";
-import labels from "../labels";
+import labels from "../labels/labels";
 import { productExists } from "../helpers/db.validators";
-import role_labels from "../role_labels";
+import role_labels from "../labels/role_labels";
 
 const router = Router();
 
@@ -17,7 +17,7 @@ router.get("/", [
 ], getProduct);
 
 router.get("/byprice", [
-    validateJwt(role_labels.TEC),
+    validateJwt(),
 ], getProductsByPrice);
 
 router.post("/create", [

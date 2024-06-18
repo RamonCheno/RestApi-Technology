@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Login from "../models/login.model";
 import bcrypt from "bcryptjs";
-import labels from "../labels";
+import labels from "../labels/labels";
 
 export const getUsers = async (req: Request, res: Response) => {
 

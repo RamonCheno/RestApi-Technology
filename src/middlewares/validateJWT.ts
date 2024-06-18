@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
-import labels from "../labels";
+import labels from "../labels/labels";
 import jwt from "jsonwebtoken";
 import Login from "../models/login.model";
-import role_labels from "../role_labels";
+import role_labels from "../labels/role_labels";
 
 const validateJwt = (roleToValidate?: string) => {
   return async (req: Request, res: Response, next: NextFunction) => {

@@ -1,6 +1,5 @@
 export default {
-    LISTEN_SERVER: "Server running on",
-    HOST: "http://localhost:",
+    LISTEN_SERVER: "Server running on Port: ",
     MSG_201: "Creado",
     MSG_204: "Contenido no encontrado",
     MSG_400: "Peticion Invalida",

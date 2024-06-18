@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
-import labels from "../labels";
+import labels from "../labels/labels";
 
 const validateFieldRequest = (req: Request, res: Response, next: NextFunction) => {
 

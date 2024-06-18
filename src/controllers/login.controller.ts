@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import LoginModel from "../models/login.model";
-import labels from "../labels";
+import labels from "../labels/labels";
 import bcrypt from "bcryptjs";
 import getJwt from "../helpers/jwt";
 

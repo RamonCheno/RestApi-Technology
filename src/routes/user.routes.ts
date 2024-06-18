@@ -2,10 +2,10 @@ import { Router } from "express";
 import { validateFieldRequest } from "../middlewares/validateFields";
 import validateJwt from "../middlewares/validateJWT";
 import { createUser, deleteUser, getUsers, updateUser } from "../controllers/user.controller";
-import labels from "../labels";
+import labels from "../labels/labels";
 import { check } from "express-validator";
 import { userExists } from "../helpers/db.validators";
-import role_labels from "../role_labels";
+import role_labels from "../labels/role_labels";
 
 const router = Router();
 

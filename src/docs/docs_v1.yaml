@@ -1,0 +1,443 @@
+paths:
+  #region ProductsPath
+  /products/:
+    get:
+      summary: Return a list of products, login is required for the user to access this feature.
+      tags: [Products]
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "200":
+          description: Successful request and return product list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "204":
+          description: Content not found
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              example:
+                msg: No Autorizado
+                response: Usuario no autorizado
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+    post:
+      summary: Add a new Product, is needed a supervisor or administrator role for use this function
+      tags: [Products]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        description: It is the request body to add new product, the "id" property of the product is not required
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "201":
+          description: the product successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              example:
+                msg: No Autorizado
+                response: Usuario no autorizado
+        "500":
+          description: Internal Server Error
+  /products/byprice/:
+    get:
+      summary: Return a list of products for a price range, login is required for the user to access this feature.
+      tags: [Products]
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: "#/components/parameters/minRange"
+        - $ref: "#/components/parameters/maxRange"
+      responses:
+        "200":
+          description: Successful request and return product list by price
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "204":
+          description: Content not found
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              example:
+                msg: No Autorizado
+                response: Usuario no autorizado
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  /products/update/{id}:
+    put:
+      summary: Update a product by id, a supervisor or administrator role is required to use this feature
+      tags: [Products]
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        description: It is the request body to update a exist product, the "id" property of the product is not required
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Product"
+      responses:
+        "200":
+          description: the product was update by id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "204":
+          description: Content not found
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              example:
+                msg: No Autorizado
+                response: Usuario no autorizado
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  /products/delete/{id}:
+    delete:
+      summary: Delete a product by id, a supervisor or administrator role is required to use this feature
+      tags: [Products]
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: the product was delete
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteElement"
+        "204":
+          description: Content not found
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              example:
+                msg: No Autorizado
+                response: Usuario no autorizado
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  #endregion
+  #region loginPath
+  /login/:
+    post:
+      summary: User Login
+      tags: [Login]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              example:
+                msg: Inicio de sesión exitoso
+                user: user1
+                token: tokenuser1user1515641
+                expireIn: 3600
+        "400":
+          description: failed login
+        "500":
+          description: Internal Server Error
+  #endregion
+  #region User Path
+  /users/:
+    get:
+      summary: Return a list of users, is needed an admin role for use this function
+      tags: [User]
+      security:
+        - ApiKeyAuth: []
+      responses:
+        "200":
+          description: Respuesta exitosa
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "204":
+          description: No content
+        "401":
+          description: Unauthorized user
+        "500":
+          description: Internal Server Error
+  /users/register/:
+    post:
+      summary: Register a new user, is needed an admin role for use this function
+      tags: [User]
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        description: It is the request body to add new User, the "id" property of the user is not required
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: Successful login
+          content:
+            application/json:
+              example:
+                msg: Registro exitoso
+                user: user1
+        "401":
+          description: Unauthorized user
+        "500":
+          description: Internal Server Error
+  /users/update/{id}:
+    put:
+      summary: Update a product by id, a supervisor or administrator role is required to use this feature
+      tags: [User]
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        description: It is the request body to update a exist user, the "id" property of the user is not required in the body
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: the user was update
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "204":
+          description: Content not found
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              example:
+                msg: No Autorizado
+                response: Usuario no autorizado
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  /users/delete/{id}:
+    delete:
+      summary: Delete a user by id, a supervisor or administrator role is required to use this feature
+      tags: [User]
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: the user was delete
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteElement"
+        "204":
+          description: Content not found
+        "401":
+          description: Unauthorized user
+          content:
+            application/json:
+              example:
+                msg: No Autorizado
+                response: Usuario no autorizado
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+  #endregion
+security:
+  - ApiKeyAuth: []
+
+#region Etiquetas
+tags:
+  - name: Products
+    description: Products endpoints
+  - name: Login
+    description: Login endpoints
+  - name: User
+    description: User endponts
+#endregion
+
+components:
+  #region Schemas
+  schemas:
+    #region Product
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the autogenerate id of product
+        name:
+          type: string
+          description: the product name
+        description:
+          type: string
+          description: The Product descriptions
+        price:
+          type: number
+          description: Price of the product
+        quantity:
+          type: number
+          description: The quantity of product available
+        status:
+          type: string
+          description: the status of the product
+      required:
+        - name
+        - description
+        - price
+        - quantity
+        - status
+      example:
+        id: 666d0a338244d09e97c124d9
+        name: mouse Gamer
+        description: wired
+        price: 14.5
+        quantity: 50
+        status: New
+    #endregion
+
+    #region User
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          description: the autogenerated id of user
+        username:
+          type: string
+          description: registered username
+        password:
+          type: string
+          description: password assigned to username
+        role:
+          $ref: "#/components/Role"
+
+        status:
+          type: boolean
+          description: the user´s status if it is activated or deactivated
+          default: true
+      required:
+        - username
+        - password
+        - role
+      example:
+        id: 666cc178170c023a9110c017
+        username: user1
+        password: user11235
+        role: USER
+        status: true
+    #endregion
+
+    #region Login
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+          description: registered username
+        password:
+          type: string
+          description: password assigned to username
+      required:
+        - username
+        - password
+      example:
+        username: user1
+        password: user11235
+    #endregion
+
+    #region Eliminacion
+    DeleteElement:
+      example:
+        msg: Successful removal
+        id: 666d0f76c143aa609a396d18
+    #endregion
+    Role:
+      type: string
+      description: Roles accepted for this Rest Api
+      enum: 
+        - ADMIN
+        - SUPER
+        - TEC
+        
+
+  #endregion
+  #region Parametros
+  parameters:
+    Id:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    apiKey:
+      in: header
+      name: apiKey
+      required: true
+      schema:
+        type: string
+    minRange:
+      in: query
+      name: min
+      required: true
+      schema:
+        type: number
+    maxRange:
+      in: query
+      name: max
+      required: true
+      schema:
+        type: number
+
+  #endregion
+
+  #region AuthHeader
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  #endregion

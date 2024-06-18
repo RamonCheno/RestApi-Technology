@@ -1,4 +1,4 @@
-import labels from "../labels";
+import labels from "../labels/labels";
 import Login from "../models/login.model";
 import Product from "../models/product.model"
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Product from "../models/product.model";
-import labels from "../labels";
+import labels from "../labels/labels";
 
 export const createProduct = async (req: Request, res: Response) => {
 
@@ -58,7 +58,7 @@ export const getProductsByPrice = async (req: Request, res: Response) => {
 
   try {
 
-    const { min, max } = req.body;
+    const { min, max } = req.query;
 
     const productList = await Product.find({ price: { $gte: min, $lte: max } });
 
@@ -111,7 +111,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 export const deleteProduct = async (req: Request, res: Response) => {
 
-  try{
+  try {
 
     const id = req.params.id;
 
@@ -122,7 +122,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
       id
     });
 
-  }catch(error){
+  } catch (error) {
     console.error(error);
     res.status(500).json({
       msg: labels.MSG_500,

@@ -1,5 +1,5 @@
 import { sign } from "jsonwebtoken";
-import labels from "../labels";
+import labels from "../labels/labels";
 
 const getJwt = (uid: string, role:string)=>{
     try {
