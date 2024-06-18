@@ -353,7 +353,7 @@ components:
           type: string
           description: password assigned to username
         role:
-          $ref: "#/components/Role"
+          $ref: "#/components/schemas/Role"
 
         status:
           type: boolean
