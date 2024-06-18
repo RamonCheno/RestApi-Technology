@@ -12,10 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const login_model_1 = __importDefault(require("../models/login.model"));
-const role_labels_1 = __importDefault(require("../role_labels"));
+const role_labels_1 = __importDefault(require("../labels/role_labels"));
 const validateJwt = (roleToValidate) => {
     return (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
         try {

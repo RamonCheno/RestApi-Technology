@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userExists = exports.productExists = void 0;
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const login_model_1 = __importDefault(require("../models/login.model"));
 const product_model_1 = __importDefault(require("../models/product.model"));
 const productExists = (id) => __awaiter(void 0, void 0, void 0, function* () {

@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const login_model_1 = __importDefault(require("../models/login.model"));
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jwt_1 = __importDefault(require("../helpers/jwt"));
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

@@ -25,7 +25,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteProduct = exports.updateProduct = exports.getProductsByPrice = exports.getProduct = exports.createProduct = void 0;
 const product_model_1 = __importDefault(require("../models/product.model"));
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { name, description, price, quantity, status } = req.body;
@@ -74,7 +74,7 @@ const getProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.getProduct = getProduct;
 const getProductsByPrice = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { min, max } = req.body;
+        const { min, max } = req.query;
         const productList = yield product_model_1.default.find({ price: { $gte: min, $lte: max } });
         if (productList.length === 0) {
             res.status(204).json({

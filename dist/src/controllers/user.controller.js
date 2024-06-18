@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteUser = exports.updateUser = exports.createUser = exports.getUsers = void 0;
 const login_model_1 = __importDefault(require("../models/login.model"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userList = yield login_model_1.default.find();

@@ -13,8 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const labels_1 = __importDefault(require("../labels"));
-const path_labels_1 = __importDefault(require("../path_labels"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_jsdoc_1 = __importDefault(require("swagger-jsdoc"));
+const swagger_v1_1 = require("../docs/swagger_v1");
+const labels_1 = __importDefault(require("../labels/labels"));
+const path_labels_1 = __importDefault(require("../labels/path_labels"));
 const config_1 = __importDefault(require("../database/config"));
 const login_routes_1 = __importDefault(require("../routes/login.routes"));
 const user_routes_1 = __importDefault(require("../routes/user.routes"));
@@ -27,12 +30,14 @@ class Server {
         this.login_path = path_labels_1.default.LOGIN;
         this.user_path = path_labels_1.default.USER;
         this.product_path = path_labels_1.default.PRODUCT;
+        this.doc_path = path_labels_1.default.DOCS;
+        this.specs = (0, swagger_jsdoc_1.default)(swagger_v1_1.options);
         this.connectDB();
         this.middleware();
         this.routes();
     }
     listen() {
-        this.app.listen(this.port, () => console.log(`${labels_1.default.LISTEN_SERVER} ${labels_1.default.HOST}${this.port}`));
+        this.app.listen(this.port, () => console.log(`${labels_1.default.LISTEN_SERVER} ${this.port}`));
     }
     connectDB() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -43,12 +48,11 @@ class Server {
         this.app.use(this.login_path, login_routes_1.default);
         this.app.use(this.user_path, user_routes_1.default);
         this.app.use(this.product_path, product_routes_1.default);
+        this.app.use(this.doc_path, swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(this.specs));
     }
     middleware() {
-        const allowedOrigins = process.env.ALLOWED_CORD || ' ';
-        this.app.use((0, cors_1.default)({
-            origin: allowedOrigins
-        }));
+        // const allowedOrigins = process.env.ALLOWED_CORD || ' ';
+        this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
     }
 }

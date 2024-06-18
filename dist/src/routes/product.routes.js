@@ -8,15 +8,15 @@ const validateJWT_1 = __importDefault(require("../middlewares/validateJWT"));
 const product_controller_1 = require("../controllers/product.controller");
 const validateFields_1 = require("../middlewares/validateFields");
 const express_validator_1 = require("express-validator");
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const db_validators_1 = require("../helpers/db.validators");
-const role_labels_1 = __importDefault(require("../role_labels"));
+const role_labels_1 = __importDefault(require("../labels/role_labels"));
 const router = (0, express_1.Router)();
 router.get("/", [
     (0, validateJWT_1.default)()
 ], product_controller_1.getProduct);
 router.get("/byprice", [
-    (0, validateJWT_1.default)(role_labels_1.default.TEC),
+    (0, validateJWT_1.default)(),
 ], product_controller_1.getProductsByPrice);
 router.post("/create", [
     (0, validateJWT_1.default)(role_labels_1.default.SUPER),

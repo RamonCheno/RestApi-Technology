@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateFieldRequest = void 0;
 const express_validator_1 = require("express-validator");
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const validateFieldRequest = (req, res, next) => {
     try {
         const errors = (0, express_validator_1.validationResult)(req);

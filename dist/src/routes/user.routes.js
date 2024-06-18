@@ -7,10 +7,10 @@ const express_1 = require("express");
 const validateFields_1 = require("../middlewares/validateFields");
 const validateJWT_1 = __importDefault(require("../middlewares/validateJWT"));
 const user_controller_1 = require("../controllers/user.controller");
-const labels_1 = __importDefault(require("../labels"));
+const labels_1 = __importDefault(require("../labels/labels"));
 const express_validator_1 = require("express-validator");
 const db_validators_1 = require("../helpers/db.validators");
-const role_labels_1 = __importDefault(require("../role_labels"));
+const role_labels_1 = __importDefault(require("../labels/role_labels"));
 const router = (0, express_1.Router)();
 router.post("/create", [
     (0, validateJWT_1.default)(role_labels_1.default.ADMIN),
