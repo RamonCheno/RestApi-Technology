@@ -9,7 +9,11 @@ export const options = {
     },
     servers: [
       {
-        url:"http://localhost:3000/api/",
+        url:"https://restapi-technology.onrender.com/api",
+        description: "Remote Server"
+      },
+      {
+        url:"https://localhost:3000/api",
         description: "Local Server"
       }
     ]
