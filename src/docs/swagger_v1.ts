@@ -5,7 +5,7 @@ export const options = {
     info: {
       title: "RestApí Store Technology",
       version: "1.0.0",
-      description: "Rest Api de productos tecnologicos",
+      description: "El proyecto detalla una API para llevar un control de productos y usuarios mediante registros en la base de datos",
     },
     servers: [
       {
